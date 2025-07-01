@@ -1,9 +1,15 @@
 {
     "selectedAuthType": "oauth-personal",
+    "fileFiltering": {
+        "respectGitIgnore": true,
+        "enableRecursiveFileSearch": false
+    },
     "mcpServers": {
         "awslabs.core-mcp-server": {
             "command": "uvx",
             "args": [
+                "--cache-dir",
+                "./.cache/uv",
                 "awslabs.core-mcp-server@latest"
             ],
             "env": {
@@ -15,6 +21,8 @@
         "awslabs.aws-documentation-mcp-server": {
             "command": "uvx",
             "args": [
+                "--cache-dir",
+                "./.cache/uv",
                 "awslabs.aws-documentation-mcp-server@latest"
             ],
             "env": {
@@ -27,10 +35,38 @@
         "awslabs.cdk-mcp-server": {
             "command": "uvx",
             "args": [
+                "--cache-dir",
+                "./.cache/uv",
                 "awslabs.cdk-mcp-server@latest"
             ],
             "env": {
                 "FASTMCP_LOG_LEVEL": "ERROR"
+            },
+            "disabled": false,
+            "autoApprove": []
+        },
+        "awslabs.cost-analysis-mcp-server": {
+            "command": "uvx",
+            "args": [
+                "--cache-dir",
+                "./.cache/uv",
+                "awslabs.cost-analysis-mcp-server@latest"
+            ],
+            "env": {
+                "FASTMCP_LOG_LEVEL": "ERROR",
+                "AWS_PROFILE": "default"
+            }
+        },
+        "awslabs.cost-explorer-mcp-server": {
+            "command": "uvx",
+            "args": [
+                "--cache-dir",
+                "./.cache/uv",
+                "awslabs.cost-explorer-mcp-server@latest"
+            ],
+            "env": {
+                "FASTMCP_LOG_LEVEL": "ERROR",
+                "AWS_PROFILE": "default"
             },
             "disabled": false,
             "autoApprove": []

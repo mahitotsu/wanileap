@@ -3,4 +3,4 @@
 # 事前にビルドしたwanileap-sandboxイメージでgemini-cliをサンドボックスモードで起動します。
 set -e
 
-gemini --sandbox-image wanileap-sandbox
+gemini -s --sandbox-image wanileap-sandbox -d
