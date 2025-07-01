@@ -31,6 +31,5 @@ RUN set -eux; \
     apt-get autoremove -y; \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* ~/.npm
 
-# uvのインストール先とキャッシュディレクトリを環境変数で指定
-ENV UV_INSTALL_DIR=/usr/local/bin
+# uvのキャッシュディレクトリを環境変数で指定
 ENV UV_CACHE_DIR=./.cache/uv

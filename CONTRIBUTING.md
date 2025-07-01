@@ -28,23 +28,24 @@
   ```bash
   #!/bin/bash
 
+  # このスクリプトはアプリケーションの依存パッケージをインストールします。
+
   # --- 依存コマンドの存在チェック ---
-  for cmd in aws gemini docker; do
-    if ! command -v "$cmd" >/dev/null 2>&1; then
-      echo "Error: $cmd command not found. Please install $cmd." >&2
-      exit 1
-    fi
-  done
+  if ! command -v apt-get >/dev/null 2>&1; then
+    echo "Error: apt-get command not found. Please use a Debian/Ubuntu environment." >&2
+    exit 1
+  fi
 
   # エラー発生時は即時終了
   set -e
 
-  # --- AWS SSO認証情報の取得と検証 ---
-  # AWS SSO 認証情報を取得し、.envファイルに書き出します。
-  # 注意: このスクリプトを実行する前に、ホストマシンで 'aws sso login' を実行し、
-  #       SSOセッションがアクティブであることを確認してください。
-  echo "Retrieving AWS SSO credentials..."
-  # ...以下略...
+  # --- パッケージのインストール ---
+  apt-get update -y
+  apt-get install -y --no-install-recommends curl ca-certificates
+
+  # --- クリーンアップ ---
+  apt-get clean
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
   ```
 
 ### その他の言語
@@ -56,15 +57,29 @@
 
 - 公式のベースイメージを使用し、可能な限り最新の安定版を推奨します。
 - イメージサイズを最小限に抑えるため、マルチステージビルドや`.dockerignore`ファイルを活用してください。
-- 各ステップの目的を明確にするため、適切なコメントを追加してください。
+- 各ステップの目的や処理内容を明確にするため、**RUN命令の中でも各処理ごとに詳細なコメントを記述してください**。
 - RUN命令は可能な限りまとめて記述し、レイヤー数を減らしてください。
+- パッケージインストール時は`--no-install-recommends`を付与し、不要なパッケージを避けてください。
+- キャッシュや一時ファイルは必ず削除し、イメージを軽量化してください。
+- 外部スクリプト（curl | sh等）は信頼できる公式のみ利用し、必要に応じて注意コメントを記載してください。
+- 環境変数の設定は`ENV`命令で明示的に行ってください。
 - 例:
   ```Dockerfile
-  # ベースイメージ
-  FROM node:20-alpine
+  # ベースイメージとして最新の安定版Debianを使用
+  FROM debian:bookworm-slim
 
-  # 依存関係のインストール
-  RUN apk add --no-cache git
+  # 必要なパッケージをインストールし、不要なキャッシュを削除
+  RUN set -eux; \
+      # パッケージリストの更新
+      apt-get update -y; \
+      # 必要なパッケージのインストール
+      apt-get install -y --no-install-recommends curl ca-certificates git; \
+      # 不要なキャッシュ・一時ファイルを削除
+      apt-get clean; \
+      rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+  # 環境変数の設定例
+  ENV APP_ENV=production
   ```
 
 ### JSONファイル
@@ -99,5 +114,3 @@
 - 変更内容が明確にわかるように、説明を詳細に記述してください。
 - 関連するIssueがあれば、参照してください。
 - レビューコメントには日本語・英語どちらでも構いません。
-
-ご協力ありがとうございます！
