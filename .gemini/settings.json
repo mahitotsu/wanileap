@@ -2,7 +2,7 @@
     "selectedAuthType": "oauth-personal",
     "fileFiltering": {
         "respectGitIgnore": true,
-        "enableRecursiveFileSearch": false
+        "enableRecursiveFileSearch": true
     },
     "mcpServers": {
         "awslabs.core-mcp-server": {
