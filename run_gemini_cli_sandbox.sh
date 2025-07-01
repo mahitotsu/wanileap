@@ -38,4 +38,4 @@ fi
 
 echo "AWS credentials have been written to .env file."
 
-gemini -s --sandbox-image wanileap-sandbox -d
+gemini -s --sandbox-image wanileap-sandbox
