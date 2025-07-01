@@ -43,4 +43,4 @@ echo "AWS credentials have been written to .env file."
 
 # --- gemini-cliのサンドボックス起動 ---
 # 事前にビルドしたwanileap-sandboxイメージでgemini-cliをサンドボックスモードで起動します。
-gemini -s --sandbox-image wanileap-sandbox
+gemini -s --sandbox-image wanileap-sandbox -y
