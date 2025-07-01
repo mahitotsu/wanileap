@@ -8,8 +8,6 @@
         "awslabs.core-mcp-server": {
             "command": "uvx",
             "args": [
-                "--cache-dir",
-                "./.cache/uv",
                 "awslabs.core-mcp-server@latest"
             ],
             "env": {
@@ -21,8 +19,6 @@
         "awslabs.aws-documentation-mcp-server": {
             "command": "uvx",
             "args": [
-                "--cache-dir",
-                "./.cache/uv",
                 "awslabs.aws-documentation-mcp-server@latest"
             ],
             "env": {
@@ -35,8 +31,6 @@
         "awslabs.cdk-mcp-server": {
             "command": "uvx",
             "args": [
-                "--cache-dir",
-                "./.cache/uv",
                 "awslabs.cdk-mcp-server@latest"
             ],
             "env": {
@@ -48,8 +42,6 @@
         "awslabs.cost-analysis-mcp-server": {
             "command": "uvx",
             "args": [
-                "--cache-dir",
-                "./.cache/uv",
                 "awslabs.cost-analysis-mcp-server@latest"
             ],
             "env": {
@@ -59,8 +51,6 @@
         "awslabs.cost-explorer-mcp-server": {
             "command": "uvx",
             "args": [
-                "--cache-dir",
-                "./.cache/uv",
                 "awslabs.cost-explorer-mcp-server@latest"
             ],
             "env": {

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# 依存コマンドの存在チェック
+for cmd in aws gemini docker; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "Error: $cmd command not found. Please install $cmd." >&2
+    exit 1
+  fi
+done
+
 # 事前にビルドしたwanileap-sandboxイメージでgemini-cliをサンドボックスモードで起動します。
 set -e
 

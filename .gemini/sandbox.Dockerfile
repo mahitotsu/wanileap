@@ -21,3 +21,4 @@ RUN apt-get update -y && \
 # UV_INSTALL_DIR 環境変数を設定し、uv をインストール
 ENV UV_INSTALL_DIR=/usr/local/bin
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV UV_CACHE_DIR=./.cache/uv
