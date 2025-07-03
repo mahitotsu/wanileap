@@ -75,4 +75,4 @@ fi
 
 # --- gemini-cliのサンドボックス起動 ---
 # 事前にビルドしたwanileap-sandboxイメージでgemini-cliをサンドボックスモードで起動します。
-gemini -s --sandbox-image wanileap-sandbox -y -d
+gemini -s --sandbox-image wanileap-sandbox -y
