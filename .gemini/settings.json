@@ -58,6 +58,13 @@
             },
             "disabled": false,
             "autoApprove": []
+        },
+        "perplexity": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "perplexity-mcp"
+            ]
         }
     }
 }

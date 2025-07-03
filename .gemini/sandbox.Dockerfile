@@ -1,7 +1,7 @@
 # ベースイメージとして最新のDebianを使用
 FROM public.ecr.aws/docker/library/debian:bookworm-slim
 
-# 必要なパッケージ、Node.js、gemini-cli、uvをインストールし、不要ファイルを削除
+# 必要なパッケージ、Node.js、gemini-cli、perplexity-mcp、uvをインストールし、不要ファイルを削除
 # 各処理の内容を詳細にコメントしています
 RUN set -eux; \
     \
@@ -9,18 +9,21 @@ RUN set -eux; \
     apt-get update -y; \
     apt-get upgrade -y; \
     \
-    # 2. 必要なパッケージのインストール（curl, ca-certificates, git）
+    # 2. 必要なパッケージのインストール（curl, ca-certificates, git, make, gcc, build-essential）
     apt-get install -y --no-install-recommends \
         curl \
         ca-certificates \
-        git; \
+        git \
+        make \
+        gcc \
+        build-essential; \
     \
     # 3. Node.js 24.x のインストール（公式スクリプトを利用）
     curl -fsSL https://deb.nodesource.com/setup_24.x | bash -; \
     apt-get install -y --no-install-recommends nodejs; \
     \
-    # 4. gemini-cli をグローバルインストール（dev依存は除外）
-    npm install -g --omit=dev @google/gemini-cli; \
+    # 4. gemini-cli, perplexity-mcp をグローバルインストール（dev依存は除外）
+    npm install -g --omit=dev @google/gemini-cli perplexity-mcp; \
     \
     # 5. uv をインストール（公式スクリプトのためcurl | shを許容）
     export UV_INSTALL_DIR=/usr/local/bin; \

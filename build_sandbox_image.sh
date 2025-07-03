@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# このスクリプトは、gemini-cliのサンドボックス環境で使用するDockerイメージをビルドします。
+
 # --- 依存コマンドの存在チェック ---
 if ! command -v docker >/dev/null 2>&1; then
   echo "Error: docker command not found. Please install Docker." >&2
